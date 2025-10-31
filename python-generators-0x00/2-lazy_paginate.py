@@ -16,10 +16,10 @@ def paginate_users(page_size: int, offset: int):
             connection = mysql.connector.connect(**DB_CONFIG)  # Connect to the database using stored configuration details.
             cursor = connection.cursor()                       # Create a cursor object to execute SQL commands.
             
-            table_name = 'user_data'
+            # table_name = 'user_data'
             
             # The SQL query uses LIMIT (how many rows to fetch) and OFFSET (where to start).
-            query = f"SELECT * FROM {table_name} LIMIT %s OFFSET %s"
+            query = f"SELECT * FROM user_data LIMIT %s OFFSET %s"
             
             # Execute the query, safely passing page_size and offset as parameters.
             cursor.execute(query, (page_size, offset))
