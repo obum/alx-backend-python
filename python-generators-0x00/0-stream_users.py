@@ -1,3 +1,4 @@
+from itertools import islice
 import mysql.connector
 import seed
 
@@ -26,7 +27,9 @@ def stream_users():
 
 if __name__ == "__main__":
 
-    for user in stream_users():
+    print(f"Database Configuration: {DB_CONFIG}")
+
+    for user in islice(stream_users(), 6):
         print(user)
 
-    print(f"Database Configuration: {DB_CONFIG}")
+    
