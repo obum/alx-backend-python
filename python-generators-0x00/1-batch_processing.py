@@ -5,7 +5,7 @@ DB_CONFIG = seed.DB_CONFIG
 DB_CONFIG['database'] = 'ALX_prodev'
 
 
-def stream_users_in_batches(batch_size):
+def stream_users_in_batches(batch_size:int):
     """
         Generator that fetches users from the database in batches.
         """
@@ -17,7 +17,7 @@ def stream_users_in_batches(batch_size):
     print("Connection to Mysql database server established successfully.")
 
     cursor = connection.cursor()
-    table_name = 'user_data'
+    table_name = 'user_data' #  ["FROM user_data"]
 
     query = f"SELECT * FROM {table_name} LIMIT %s"
 
@@ -49,7 +49,7 @@ def stream_users_in_batches(batch_size):
 #         users = cursor.fetchmany(batch_size)
 #         if not users:
 #             break
-#         yield users
+#         yield users # return users
 #     cursor.close()  
 
 
