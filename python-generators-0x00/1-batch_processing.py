@@ -5,7 +5,7 @@ DB_CONFIG = seed.DB_CONFIG
 DB_CONFIG['database'] = 'ALX_prodev'
 
 
-def stream_users_in_batches(batch_size:int):
+def stream_users_in_batches(batch_size):
     """
         Generator that fetches users from the database in batches.
         """
