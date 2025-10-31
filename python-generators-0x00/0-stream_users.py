@@ -1,9 +1,20 @@
+import mysql.connector
 import seed
 
-def stream_users(connection, table_name='user_data'):
+DB_CONFIG = seed.DB_CONFIG
+DB_CONFIG['database'] = 'ALX_prodev'
+
+
+
+def stream_users():
     """
     Generator that fetches users from the database one at a time.
     """
+    connection = mysql.connector.connect(**DB_CONFIG)
+    print("Connection to Mysql database server established successfully.")
+    print()
+    print()
+    table_name='user_data'
     cursor = connection.cursor()
     query = f"SELECT * FROM {table_name}"
     cursor.execute(query)
@@ -14,9 +25,8 @@ def stream_users(connection, table_name='user_data'):
     cursor.close()
 
 if __name__ == "__main__":
-    connection = seed.connect_db()
-    seed.connect_to_prodev(connection)
-    
 
-    for user_record in stream_users(connection, 'user_data'):
-        print(user_record)
+    for user in stream_users():
+        print(user)
+
+    print(f"Database Configuration: {DB_CONFIG}")
