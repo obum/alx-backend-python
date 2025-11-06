@@ -1,6 +1,8 @@
 import sqlite3 
 import functools
 
+
+
 def with_db_connection(func):
     """ your code goes here"""  
     @functools.wraps(func)
@@ -14,10 +16,10 @@ def with_db_connection(func):
             print(f"An error occurred while connecting to the database: {e}")
             return None
         
-        # finally:
-        #     if connection:
-        #         connection.close()
-        #         print("Database connection closed.")
+        finally:
+            if connection:
+                connection.close()
+                print("Database connection closed.")
         
     return wrapper
 
@@ -32,5 +34,5 @@ def get_user_by_id(conn, user_id):
 
 
 #### Fetch user by ID with automatic connection handling 
-user = get_user_by_id(user_id=1)
+user = get_user_by_id(user_id='c0d6860d-9d08-455c-ab79-6e415a4279b3')
 print(user)

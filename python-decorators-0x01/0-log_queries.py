@@ -166,6 +166,21 @@ def create_table(connection):
     finally:
         cursor.close()  
 
+@log_queries
+def fetch_all_users(query='SELECT * FROM user_data LIMIT 5'):
+    """Fetch and print all users from the user_data table."""
+    try:
+        connection = sqlite3.connect(DB_FILE)
+        cursor = connection.cursor()
+        cursor.execute(query)
+        users = cursor.fetchall()
+        # for user in islice(users, 5):
+        #     print(user)
+        return users
+    except sqlite3.Error as e:  
+        print(f"An error occurred while fetching data: {e}")
+        return None
+
 if __name__ == "__main__":
     conn, cur = create_connection(DB_FILE)
     if conn and cur:
@@ -182,20 +197,7 @@ if __name__ == "__main__":
         READ_TABLE_QUERY = """
         SELECT * FROM user_data LIMIT 5;
         """       
-        @log_queries
-        def fetch_all_users(query='SELECT * FROM user_data LIMIT 5'):
-            """Fetch and print all users from the user_data table."""
-            try:
-                connection = sqlite3.connect(DB_FILE)
-                cursor = connection.cursor()
-                cursor.execute(query)
-                users = cursor.fetchall()
-                # for user in islice(users, 5):
-                #     print(user)
-                return users
-            except sqlite3.Error as e:  
-                print(f"An error occurred while fetching data: {e}")
-                return None
+
             
         fetch_all_users()
  
