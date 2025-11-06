@@ -3,7 +3,7 @@ from itertools import islice
 import sqlite3
 import uuid
 
-# 1. Define the database file name
+# 1. Define the database file name /// from datetime import datetime
 DB_FILE = 'test2.db'
 
 
