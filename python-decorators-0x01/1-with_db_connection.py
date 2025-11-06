@@ -27,6 +27,7 @@ def with_db_connection(func):
 
 @with_db_connection 
 def get_user_by_id(conn, user_id): 
+    """Fetch a user by ID from the user_data table."""
     cursor = conn.cursor() 
     cursor.execute("SELECT * FROM user_data WHERE user_id = ?", (user_id,)) 
     return cursor.fetchone() 
